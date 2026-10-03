@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ProductoService } from './services/producto';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.scss',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('SWAD-LAB07B-angular-routing-forms-signals');
+  private readonly productoService = inject(ProductoService);
+
+  // Actividad Autonoma A3: lectura directa del signal del servicio para la cantidad total
+  readonly totalProductos = this.productoService.totalProductos;
+  readonly totalStockBajo = this.productoService.productosStockBajo;
 }

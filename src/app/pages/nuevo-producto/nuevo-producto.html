@@ -1,0 +1,48 @@
+<section class="container py-4" style="max-width: 680px">
+  <div class="card border-0 shadow-sm p-4 bg-white">
+    <h1 class="h3 mb-4 text-primary">Registrar Nuevo Producto</h1>
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label fw-semibold">Nombre del Producto</label>
+      <input id="nombre" class="form-control" [(ngModel)]="nombre" name="nombre" placeholder="Ej: Memoria RAM DDR5 32GB" />
+    </div>
+
+    <!-- Actividad A1: campo categoria -->
+    <div class="mb-3">
+      <label for="categoria" class="form-label fw-semibold">Categoría</label>
+      <select id="categoria" class="form-select" [(ngModel)]="categoria" name="categoria">
+        <option value="Periféricos">Periféricos</option>
+        <option value="Monitores">Monitores</option>
+        <option value="Audio">Audio</option>
+        <option value="Componentes">Componentes</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Almacenamiento">Almacenamiento</option>
+      </select>
+    </div>
+
+    <div class="row g-3 mb-3">
+      <div class="col-12 col-md-6">
+        <label for="precio" class="form-label fw-semibold">Precio (S/)</label>
+        <input id="precio" type="number" step="0.10" class="form-control" [(ngModel)]="precio" name="precio" placeholder="0.00" />
+      </div>
+      <div class="col-12 col-md-6">
+        <label for="stock" class="form-label fw-semibold">Stock Inicial</label>
+        <input id="stock" type="number" class="form-control" [(ngModel)]="stock" name="stock" placeholder="0" />
+      </div>
+    </div>
+
+    <!-- @if con mensaje de validacion -->
+    @if (mensaje) {
+      <div class="alert alert-danger mb-4 py-2">{{ mensaje }}</div>
+    }
+
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-primary px-4 fw-semibold" (click)="guardar()">
+        Guardar Producto
+      </button>
+      <a class="btn btn-outline-secondary px-4" routerLink="/">
+        Cancelar
+      </a>
+    </div>
+  </div>
+</section>

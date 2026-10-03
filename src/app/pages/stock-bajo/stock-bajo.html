@@ -1,0 +1,47 @@
+<section class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 mb-1 text-danger">Alerta de Reposición: Stock Insuficiente</h1>
+      <p class="text-muted small mb-0">Artículos con inventario crítico (menos de 5 unidades disponibles en almacén).</p>
+    </div>
+    <a class="btn btn-outline-primary" routerLink="/">Volver al Catálogo</a>
+  </div>
+
+  @if (productos().length === 0) {
+    <div class="alert alert-success">
+      Todos los productos cuentan actualmente con stock óptimo mayor o igual a 5 unidades.
+    </div>
+  } @else {
+    <div class="row g-3">
+      @for (p of productos(); track p.id) {
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm border-danger border-start border-4">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h2 class="h5 mb-0">{{ p.nombre }}</h2>
+                <span class="badge bg-light text-dark border">{{ p.categoria }}</span>
+              </div>
+              <p class="h6 text-primary mb-2">{{ p.precio | currency:'PEN':'S/ ' }}</p>
+              <p class="mb-2 text-danger fw-semibold small">Stock restante: {{ p.stock }} unidades</p>
+              
+              <div class="mb-3">
+                <span class="badge text-bg-danger">
+                  {{ p.estadoStock }}
+                </span>
+              </div>
+
+              <div class="d-flex gap-2 mt-auto pt-2 border-top">
+                <a [routerLink]="['/editar', p.id]" class="btn btn-sm btn-outline-primary flex-grow-1">
+                  Reponer / Editar
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="eliminar(p.id)">
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  }
+</section>
