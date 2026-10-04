@@ -1,0 +1,12 @@
+graph TD
+    User([Usuario / Visitante]) --> SPA[App Root Component]
+    SPA --> Navbar[Navbar con Signals: totalProductos, totalStockBajo]
+    SPA --> RouterOutlet[Router Outlet]
+    RouterOutlet -->|Ruta: /| CatalogoPage[Catalogo: Grilla y Acciones]
+    RouterOutlet -->|Ruta: /nuevo| NuevoPage[NuevoProducto: Formulario ngModel]
+    RouterOutlet -->|Ruta: /stock-bajo| StockBajoPage[StockBajo: Vista de Alerta A4]
+    RouterOutlet -->|Ruta: /editar/:id| EditarPage[EditarProducto: Edicion RETO]
+    CatalogoPage <-->|inject| Service[ProductoService: state _productos]
+    NuevoPage <-->|inject| Service
+    StockBajoPage <-->|inject| Service
+    EditarPage <-->|inject| Service

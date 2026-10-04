@@ -36,6 +36,11 @@ En arquitecturas web modernas orientadas a microservicios y aplicaciones empresa
 
 ## 2. Diagrama Arquitectonico y Flujo de Navegacion SPA
 
+![Diagrama Arquitectónico](./mermaid%20diagramas/arquitectura.svg)
+
+<details>
+<summary>Visualizar especificación fuente en formato Mermaid</summary>
+
 ```mermaid
 graph TD
     User([Usuario / Visitante]) --> SPA[App Root Component]
@@ -50,6 +55,8 @@ graph TD
     StockBajoPage <-->|inject| Service
     EditarPage <-->|inject| Service
 ```
+
+</details>
 
 ---
 
@@ -108,9 +115,11 @@ Resultados verificados:
 - Insercion de nuevos productos con asignacion automatica de ID y calculo de `estadoStock`.
 - Eliminacion de productos y actualizacion inmediata del arreglo reactivo (Actividad A2).
 - Calculo y actualizacion automatica de senales computadas (`totalProductos` y `productosStockBajo`).
-- Rechazo estricto de entradas no validas en el formulario de alta (nombre vacio, precio cero, stock negativo).
+- Rechazo estricto de entradas no validas en el formulario de alta (nombre vacio, precio cero o negativo, stock negativo).
 - Actualizacion de productos existentes mediante el identificador de ruta (RETO).
-- Total: 15/15 pruebas unitarias aprobadas (100% exito).
+- Manejo robusto de casos de error en edicion: rutas con ID inexistente (`noEncontrado = true`) o parametros ausentes.
+- Verificacion aislada de la vista especializada `StockBajo` (Actividad A4).
+- Total: 24/24 pruebas unitarias aprobadas (100% exito).
 
 ---
 

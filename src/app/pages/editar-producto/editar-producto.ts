@@ -48,11 +48,11 @@ export class EditarProducto implements OnInit {
 
   guardar(): void {
     if (this.id === null) return;
-    if (this.precio === null || this.precio <= 0) {
+    if (this.precio === null || isNaN(this.precio) || this.precio <= 0) {
       this.mensaje = 'El precio debe ser mayor que 0.';
       return;
     }
-    if (this.stock === null || this.stock < 0) {
+    if (this.stock === null || isNaN(this.stock) || this.stock < 0) {
       this.mensaje = 'El stock no puede ser negativo.';
       return;
     }
